@@ -1,49 +1,62 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
 import App from './App'
-import Passport from './Passport'
 
-// Theme Configuration (same as App.jsx)
+// Theme Configuration - GoodFutures Brand Identity
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#62A8AC',
-      dark: '#307473',
+      main: '#1E3B33', // Forest Green (Grounded Accent)
+      light: '#2d574a',
+      dark: '#152921',
     },
     secondary: {
-      main: '#EFD28D',
-      dark: '#12664F',
+      main: '#FFB800', // Amber/Gold (Catalyst Accent)
+      light: '#ffc533',
+      dark: '#cc9300',
     },
     background: {
-      default: '#252626',
-      paper: '#09342B',
+      default: '#F8F8F6', // Soft off-white
+      paper: '#FFFFFF',
     },
     info: {
-      main: '#5497A7',
+      main: '#62A8AC', // Supporting teal
     },
     error: {
-      main: '#D4AFB9',
+      main: '#d32f2f',
     },
     text: {
-      primary: '#E0E0E0',
-      secondary: 'rgba(224, 224, 224, 0.7)',
+      primary: '#212121', // Deep charcoal
+      secondary: 'rgba(33, 33, 33, 0.7)',
     },
+    divider: 'rgba(30, 59, 51, 0.12)',
   },
   typography: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
     h1: {
-      fontWeight: 800,
+      fontFamily: 'Marcellus, serif',
+      fontWeight: 400,
       letterSpacing: '-0.02em',
     },
     h2: {
-      fontWeight: 800,
+      fontFamily: 'Marcellus, serif',
+      fontWeight: 400,
       letterSpacing: '-0.01em',
     },
     h3: {
-      fontWeight: 700,
+      fontFamily: 'Marcellus, serif',
+      fontWeight: 400,
+    },
+    h4: {
+      fontWeight: 600,
+    },
+    h5: {
+      fontWeight: 600,
+    },
+    h6: {
+      fontWeight: 600,
     },
   },
   components: {
@@ -52,7 +65,7 @@ const theme = createTheme({
         root: {
           textTransform: 'none',
           fontWeight: 600,
-          borderRadius: 8,
+          borderRadius: 50,
           padding: '12px 32px',
         },
       },
@@ -62,8 +75,10 @@ const theme = createTheme({
         root: {
           borderRadius: 16,
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          boxShadow: '0 2px 8px rgba(30, 59, 51, 0.08)',
           '&:hover': {
-            transform: 'translateY(-8px)',
+            transform: 'scale(1.02)',
+            boxShadow: '0 8px 24px rgba(30, 59, 51, 0.12)',
           },
         },
       },
@@ -75,12 +90,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/passport" element={<Passport />} />
-        </Routes>
-      </BrowserRouter>
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
 )
