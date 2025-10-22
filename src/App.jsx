@@ -24,6 +24,8 @@ import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RecommendIcon from '@mui/icons-material/Recommend';
+import PersonIcon from '@mui/icons-material/Person';
+import BusinessIcon from '@mui/icons-material/Business';
 
 // Import SVG images
 import ResearchIcon from './assets/Research-Level Analysis.svg';
@@ -155,14 +157,14 @@ function App() {
             boxShadow: 'none',
           }}
         >
-          <Container maxWidth="lg" sx={{ pt: 2 }}>
+          <Container maxWidth="xl" sx={{ pt: 2, px: { xs: 2, sm: 3 } }}>
             <Box sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              height: '70px',
-              py: 2,
-              px: 3,
+              height: { xs: '60px', md: '70px' },
+              py: { xs: 1.5, md: 2 },
+              px: { xs: 2, md: 3 },
               bgcolor: 'rgba(255, 255, 255, 0.3)',
               backdropFilter: 'blur(20px)',
               borderRadius: '50px',
@@ -236,6 +238,44 @@ function App() {
                   Vision
                 </Link>
                 <Link
+                  href="#candidates"
+                  underline="none"
+                  sx={{
+                    color: 'primary.main',
+                    fontSize: '0.95rem',
+                    fontWeight: 500,
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    border: '1px solid transparent',
+                    transition: 'all 0.2s',
+                    '&:hover': {
+                      bgcolor: 'rgba(30, 59, 51, 0.08)',
+                      borderColor: 'rgba(30, 59, 51, 0.2)'
+                    }
+                  }}
+                >
+                  For Candidates
+                </Link>
+                <Link
+                  href="#companies"
+                  underline="none"
+                  sx={{
+                    color: 'primary.main',
+                    fontSize: '0.95rem',
+                    fontWeight: 500,
+                    padding: '8px 16px',
+                    border: '1px solid transparent',
+                    borderRadius: '8px',
+                    transition: 'all 0.2s',
+                    '&:hover': {
+                      bgcolor: 'rgba(30, 59, 51, 0.08)',
+                      borderColor: 'rgba(30, 59, 51, 0.2)'
+                    }
+                  }}
+                >
+                  For Companies
+                </Link>
+                <Link
                   href="#features"
                   underline="none"
                   sx={{
@@ -254,87 +294,63 @@ function App() {
                 >
                   Solution
                 </Link>
-                <Link
-                  href="#candidates"
-                  underline="none"
-                  sx={{
-                    color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
-                    padding: '8px 16px',
-                    border: '1px solid transparent',
-                    borderRadius: '8px',
-                    transition: 'all 0.2s',
-                    '&:hover': {
-                      bgcolor: 'rgba(30, 59, 51, 0.08)',
-                      borderColor: 'rgba(30, 59, 51, 0.2)'
-                    }
-                  }}
-                >
-                  For Candidates
-                </Link>
-                <Link
-                  href="#companies"
-                  underline="none"
-                  sx={{
-                    color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    border: '1px solid transparent',
-                    transition: 'all 0.2s',
-                    '&:hover': {
-                      bgcolor: 'rgba(30, 59, 51, 0.08)',
-                      borderColor: 'rgba(30, 59, 51, 0.2)'
-                    }
-                  }}
-                >
-                  For Companies
-                </Link>
               </Box>
 
               {/* Right Actions */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Link
-                  href="#"
-                  underline="none"
-                  sx={{
-                    color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
-                    display: { xs: 'none', md: 'block' },
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    border: '1px solid transparent',
-                    transition: 'all 0.2s',
-                    '&:hover': {
-                      bgcolor: 'rgba(30, 59, 51, 0.08)',
-                      borderColor: 'rgba(30, 59, 51, 0.2)'
-                    }
-                  }}
-                >
-                  Sign In
-                </Link>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
                 <Button
                   variant="contained"
                   sx={{
                     bgcolor: 'secondary.main',
                     color: '#212121',
-                    borderRadius: '8px',
-                    px: 3,
+                    borderRadius: '50px',
+                    px: { xs: 2, sm: 3 },
                     py: 1,
-                    fontSize: '0.95rem',
+                    fontSize: { xs: '0.8rem', sm: '0.9rem' },
                     fontWeight: 600,
                     textTransform: 'none',
                     boxShadow: 'none',
+                    display: { xs: 'none', lg: 'block' },
+                    width: { sm: '180px', md: '200px' },
+                    height: '40px',
+                    transition: 'background-color 0.2s ease',
                     '&:hover': {
                       bgcolor: 'secondary.dark',
-                      boxShadow: '0 2px 8px rgba(255, 184, 0, 0.3)',
+                      boxShadow: 'none',
+                      transform: 'none',
                     },
                   }}
                 >
-                  Get Started
+                  Sign up as candidate
+                </Button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    bgcolor: 'transparent',
+                    color: 'primary.main',
+                    border: '2px solid',
+                    borderColor: 'secondary.main',
+                    borderRadius: '50px',
+                    px: { xs: 2, sm: 3 },
+                    py: 1,
+                    fontSize: { xs: '0.8rem', sm: '0.9rem' },
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    boxShadow: 'none',
+                    width: { xs: '120px', sm: '180px', md: '200px' },
+                    height: '40px',
+                    transition: 'background-color 0.2s ease, color 0.2s ease',
+                    '&:hover': {
+                      bgcolor: 'secondary.main',
+                      color: '#212121',
+                      borderColor: 'secondary.main',
+                      boxShadow: 'none',
+                      transform: 'none',
+                    },
+                  }}
+                >
+                  <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Sign up as company</Box>
+                  <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Sign up</Box>
                 </Button>
               </Box>
             </Box>
@@ -426,9 +442,9 @@ function App() {
                     },
                   }}
                 >
-                  Rethinking <span className="highlight">Hiring</span>
+                  Rethinking How
                   <br />
-                  to See the <span className="highlight">Whole Person</span>.
+                  <span className="highlight">Talent</span> and <span className="highlight">Work</span> Connect
                 </Typography>
               </Box>
 
@@ -454,11 +470,13 @@ function App() {
                   },
                 }}
               >
-                We connect talent and opportunity through deep analysis, genuine conversations, and intelligent matching — helping authenticity prevail over algorithms.
+                GoodFutures helps individuals and organizations connect beyond the résumé — through intelligent insight, authentic conversation, and a shared vision for growth.
               </Typography>
 
               <Box sx={{
                 display: 'flex',
+                gap: 2,
+                flexWrap: 'wrap',
                 justifyContent: 'flex-start',
                 opacity: 0,
                 animation: 'heroCtaEntrance 1.2s ease-out 0.5s forwards',
@@ -473,66 +491,136 @@ function App() {
                   },
                 },
               }}>
-                <Box
+                <Button
+                  variant="outlined"
+                  size="large"
                   sx={{
                     position: 'relative',
-                    display: 'inline-block',
-                    padding: '20px',
-                    '&::before, &::after': {
+                    overflow: 'hidden',
+                    bgcolor: 'transparent',
+                    color: '#212121',
+                    borderRadius: '50px',
+                    pl: 5,
+                    pr: 2.5,
+                    height: '60px',
+                    py: 0,
+                    width: '300px',
+                    fontSize: '1.05rem',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    border: '2px solid #FFB800',
+                    '&::before': {
                       content: '""',
                       position: 'absolute',
-                      width: '30px',
-                      height: '30px',
-                      border: '3px solid rgba(255, 255, 255, 0.7)',
-                      transition: 'all 0.4s ease',
-                    },
-                    '&::before': {
-                      top: '0',
-                      left: '0',
-                      borderRight: 'none',
-                      borderBottom: 'none',
-                      borderTopLeftRadius: '12px',
-                    },
-                    '&::after': {
-                      bottom: '0',
-                      right: '0',
-                      borderLeft: 'none',
-                      borderTop: 'none',
-                      borderBottomRightRadius: '12px',
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      width: '60px',
+                      bgcolor: 'secondary.main',
+                      borderRadius: '50px',
+                      transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      zIndex: 0,
                     },
                     '&:hover::before': {
-                      top: '8px',
-                      left: '8px',
+                      width: '100%',
                     },
-                    '&:hover::after': {
-                      bottom: '8px',
-                      right: '8px',
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                      border: '2px solid #FFB800',
+                    },
+                    '& .icon-circle': {
+                      position: 'absolute',
+                      left: '20px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      zIndex: 1,
+                      transition: 'opacity 0.3s ease',
+                    },
+                    '&:hover .icon-circle': {
+                      opacity: 0,
+                    },
+                    '&:hover .default-text': {
+                      display: 'none',
+                    },
+                    '&:hover .hover-text': {
+                      display: 'flex !important',
                     },
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    size="large"
-                    sx={{
-                      bgcolor: 'secondary.main',
-                      color: '#212121',
-                      borderRadius: '50px',
-                      px: 6,
-                      py: 2,
-                      fontSize: '1.1rem',
-                      fontWeight: 600,
-                      textTransform: 'none',
-                      boxShadow: '0 4px 16px rgba(255, 184, 0, 0.25)',
-                      '&:hover': {
-                        bgcolor: 'secondary.dark',
-                        boxShadow: '0 6px 24px rgba(255, 184, 0, 0.35)',
-                        transform: 'translateY(-2px)',
-                      },
-                    }}
-                  >
-                    Start Your Journey
+                    <PersonIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                    <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                      <span>For Candidates</span>
+                    </Box>
+                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
+                      <PersonIcon sx={{ fontSize: 20 }} />
+                      <span>Discover Your Fit</span>
+                    </Box>
                   </Button>
-                </Box>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                    bgcolor: 'transparent',
+                    color: '#212121',
+                    borderRadius: '50px',
+                    pl: 5,
+                    pr: 2.5,
+                    height: '60px',
+                    py: 0,
+                    width: '300px',
+                    fontSize: '1.05rem',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    border: '2px solid #FFB800',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      width: '60px',
+                      bgcolor: 'secondary.main',
+                      borderRadius: '50px',
+                      transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      zIndex: 0,
+                    },
+                    '&:hover::before': {
+                      width: '100%',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                      border: '2px solid #FFB800',
+                    },
+                    '& .icon-circle': {
+                      position: 'absolute',
+                      left: '20px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      zIndex: 1,
+                      transition: 'opacity 0.3s ease',
+                    },
+                    '&:hover .icon-circle': {
+                      opacity: 0,
+                    },
+                    '&:hover .default-text': {
+                      display: 'none',
+                    },
+                    '&:hover .hover-text': {
+                      display: 'flex !important',
+                    },
+                  }}
+                >
+                    <BusinessIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                    <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                      <span>For Companies</span>
+                    </Box>
+                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
+                      <BusinessIcon sx={{ fontSize: 20 }} />
+                      <span>Find the Right Talent</span>
+                    </Box>
+                  </Button>
               </Box>
               </Grid>
 
@@ -864,6 +952,654 @@ function App() {
                 </Box>
               </Box>
             </ScrollFade>
+          </Container>
+        </Box>
+
+        {/* ===== FOR CANDIDATES SECTION ===== */}
+        <Box id="candidates" sx={{ bgcolor: '#F8F8F6', py: { xs: 12, md: 16 } }}>
+          <Container maxWidth="lg">
+            {/* Candidates Hero */}
+            <ScrollFade>
+              <Box sx={{ textAlign: 'center', mb: 10 }}>
+                <Chip
+                  label="For Candidates"
+                  sx={{
+                    bgcolor: 'primary.main',
+                    color: '#FFFFFF',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    px: 2,
+                    py: 0.5,
+                    mb: 3,
+                  }}
+                />
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontSize: { xs: '2rem', md: '3rem' },
+                    fontWeight: 700,
+                    color: 'primary.main',
+                    mb: 3,
+                  }}
+                >
+                  Be Seen for Who You Really Are
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: '1.1rem', md: '1.3rem' },
+                    color: 'text.secondary',
+                    maxWidth: '800px',
+                    mx: 'auto',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Move beyond resume keywords and connect with opportunities that value your full potential — your skills, mindset, and growth trajectory.
+                </Typography>
+              </Box>
+            </ScrollFade>
+
+            {/* How It Works */}
+            <ScrollFade delay={100}>
+              <Typography
+                variant="h4"
+                sx={{
+                  textAlign: 'center',
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  mb: 8,
+                }}
+              >
+                How It Works
+              </Typography>
+            </ScrollFade>
+
+            <Box sx={{ mb: 10 }}>
+              {/* Step 01 - Content Left, Image Right */}
+              <ScrollFade delay={0}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        01
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Upload Your Resume
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Start by submitting your resume. Our AI reads beyond the keywords — extracting your skills, experiences, and unique patterns of growth.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 02 - Image Left, Content Right */}
+              <ScrollFade delay={100}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        02
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Generate Your Passport
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Instantly create your digital career profile — a living "passport" that highlights your strengths, values, and trajectory, not just your past roles.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 03 - Content Left, Image Right */}
+              <ScrollFade delay={200}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        03
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Have an AI Coffee Chat
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Engage in a friendly, human-like conversation that helps us understand your motivations, working style, and what truly drives you.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 04 - Image Left, Content Right */}
+              <ScrollFade delay={300}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        04
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Receive Insight & Opportunities
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Get personalized feedback on your fit, and explore roles where your strengths and growth potential truly stand out.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+            </Box>
+
+            {/* CTA */}
+            <Box sx={{ textAlign: 'center', mt: 8 }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  bgcolor: 'secondary.main',
+                  color: '#212121',
+                  borderRadius: '50px',
+                  px: 6,
+                  py: 2,
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  boxShadow: '0 4px 16px rgba(255, 184, 0, 0.25)',
+                  '&:hover': {
+                    bgcolor: 'secondary.dark',
+                    boxShadow: '0 6px 24px rgba(255, 184, 0, 0.35)',
+                  },
+                }}
+              >
+                Start Your Journey
+              </Button>
+            </Box>
+          </Container>
+        </Box>
+
+        {/* ===== FOR COMPANIES SECTION ===== */}
+        <Box id="companies" sx={{ bgcolor: '#E8E6E1', py: { xs: 12, md: 16 } }}>
+          <Container maxWidth="lg">
+            {/* Companies Hero */}
+            <ScrollFade>
+              <Box sx={{ textAlign: 'center', mb: 10 }}>
+                <Chip
+                  label="For Companies"
+                  sx={{
+                    bgcolor: 'primary.main',
+                    color: '#FFFFFF',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    px: 2,
+                    py: 0.5,
+                    mb: 3,
+                  }}
+                />
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontSize: { xs: '2rem', md: '3rem' },
+                    fontWeight: 700,
+                    color: 'primary.main',
+                    mb: 3,
+                  }}
+                >
+                  Hire Talent That Actually Fits
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: '1.1rem', md: '1.3rem' },
+                    color: 'text.secondary',
+                    maxWidth: '800px',
+                    mx: 'auto',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Stop wasting time on mismatched candidates. Find people who align with your culture, values, and long-term vision — faster and with more confidence.
+                </Typography>
+              </Box>
+            </ScrollFade>
+
+            {/* How It Works */}
+            <ScrollFade delay={100}>
+              <Typography
+                variant="h4"
+                sx={{
+                  textAlign: 'center',
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  mb: 6,
+                }}
+              >
+                How It Works
+              </Typography>
+            </ScrollFade>
+
+            <Box sx={{ mb: 10 }}>
+              {/* Step 01 - Content Left, Image Right */}
+              <ScrollFade delay={0}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        01
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Upload Your Job Description
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Share your open roles — our AI analyzes required skills, growth potential, and cultural indicators to understand your hiring needs.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 02 - Image Left, Content Right */}
+              <ScrollFade delay={100}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        02
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Get Matched Candidates
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Receive a curated shortlist of candidates whose Passports align with your goals — each backed by verified skills and authentic insights.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 03 - Content Left, Image Right */}
+              <ScrollFade delay={200}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        03
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Review Candidate Passports
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Explore detailed profiles that go beyond résumés — uncover motivations, working styles, and what makes each person stand out.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+
+              {/* Step 04 - Image Left, Content Right */}
+              <ScrollFade delay={300}>
+                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
+                    <Box
+                      sx={{
+                        bgcolor: 'background.paper',
+                        borderRadius: 3,
+                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        p: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: { xs: 200, md: 300 },
+                      }}
+                    >
+                      <Typography variant="body2" color="text.secondary">
+                        [Illustration]
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: '3rem',
+                          fontWeight: 700,
+                          color: 'secondary.main',
+                          mb: 2,
+                          opacity: 0.3,
+                        }}
+                      >
+                        04
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 700,
+                          color: 'primary.main',
+                          mb: 2,
+                          fontSize: { xs: '1.75rem', md: '2rem' },
+                        }}
+                      >
+                        Make Confident Decisions
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: 'text.secondary',
+                          lineHeight: 1.8,
+                          fontSize: '1.1rem',
+                        }}
+                      >
+                        Compare candidates with clarity and confidence, backed by data and human-centered insights to find the right long-term fit.
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ScrollFade>
+            </Box>
+
+            {/* CTA */}
+            <Box sx={{ textAlign: 'center', mt: 8 }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  bgcolor: 'secondary.main',
+                  color: '#212121',
+                  borderRadius: '50px',
+                  px: 6,
+                  py: 2,
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  boxShadow: '0 4px 16px rgba(255, 184, 0, 0.25)',
+                  '&:hover': {
+                    bgcolor: 'secondary.dark',
+                    boxShadow: '0 6px 24px rgba(255, 184, 0, 0.35)',
+                  },
+                }}
+              >
+                Start Hiring Smarter
+              </Button>
+            </Box>
           </Container>
         </Box>
 
@@ -1268,27 +2004,143 @@ function App() {
                   Whether you're looking for a role that fits who you are, or building a team that reflects your values, we're here to make every match meaningful.
                 </Typography>
 
-                <Button
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    bgcolor: 'secondary.main',
-                    color: '#212121',
-                    borderRadius: 50,
-                    px: 6,
-                    py: 2,
-                    fontSize: '1.1rem',
-                    fontWeight: 600,
-                    boxShadow: '0 4px 16px rgba(255, 184, 0, 0.25)',
-                    '&:hover': {
-                      bgcolor: 'secondary.dark',
-                      boxShadow: '0 6px 24px rgba(255, 184, 0, 0.35)',
-                      transform: 'translateY(-2px)',
-                    },
-                  }}
-                >
-                  Start Your Journey
-                </Button>
+                <Box sx={{
+                  display: 'flex',
+                  gap: 2,
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                }}>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    sx={{
+                      position: 'relative',
+                      overflow: 'hidden',
+                      bgcolor: 'transparent',
+                      color: '#212121',
+                      borderRadius: '50px',
+                      pl: 5,
+                      pr: 2.5,
+                      height: '60px',
+                      py: 0,
+                      width: '300px',
+                      fontSize: '1.05rem',
+                      fontWeight: 600,
+                      textTransform: 'none',
+                      border: '2px solid #FFB800',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        width: '60px',
+                        bgcolor: 'secondary.main',
+                        borderRadius: '50px',
+                        transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        zIndex: 0,
+                      },
+                      '&:hover::before': {
+                        width: '100%',
+                      },
+                      '&:hover': {
+                        bgcolor: 'transparent',
+                        border: '2px solid #FFB800',
+                      },
+                      '& .icon-circle': {
+                        position: 'absolute',
+                        left: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1,
+                        transition: 'opacity 0.3s ease',
+                      },
+                      '&:hover .icon-circle': {
+                        opacity: 0,
+                      },
+                      '&:hover .default-text': {
+                        display: 'none',
+                      },
+                      '&:hover .hover-text': {
+                        display: 'flex !important',
+                      },
+                    }}
+                  >
+                      <PersonIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                      <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                        <span>For Candidates</span>
+                      </Box>
+                      <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
+                        <PersonIcon sx={{ fontSize: 20 }} />
+                        <span>Discover Your Fit</span>
+                      </Box>
+                    </Button>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    sx={{
+                      position: 'relative',
+                      overflow: 'hidden',
+                      bgcolor: 'transparent',
+                      color: '#212121',
+                      borderRadius: '50px',
+                      pl: 5,
+                      pr: 2.5,
+                      height: '60px',
+                      py: 0,
+                      width: '300px',
+                      fontSize: '1.05rem',
+                      fontWeight: 600,
+                      textTransform: 'none',
+                      border: '2px solid #FFB800',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        width: '60px',
+                        bgcolor: 'secondary.main',
+                        borderRadius: '50px',
+                        transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        zIndex: 0,
+                      },
+                      '&:hover::before': {
+                        width: '100%',
+                      },
+                      '&:hover': {
+                        bgcolor: 'transparent',
+                        border: '2px solid #FFB800',
+                      },
+                      '& .icon-circle': {
+                        position: 'absolute',
+                        left: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1,
+                        transition: 'opacity 0.3s ease',
+                      },
+                      '&:hover .icon-circle': {
+                        opacity: 0,
+                      },
+                      '&:hover .default-text': {
+                        display: 'none',
+                      },
+                      '&:hover .hover-text': {
+                        display: 'flex !important',
+                      },
+                    }}
+                  >
+                      <BusinessIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                      <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                        <span>For Companies</span>
+                      </Box>
+                      <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
+                        <BusinessIcon sx={{ fontSize: 20 }} />
+                        <span>Start Hiring Smarter</span>
+                      </Box>
+                    </Button>
+                </Box>
               </Box>
             </ScrollFade>
           </Container>
@@ -1315,14 +2167,14 @@ function App() {
                 <Link href="#vision" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
                   Vision
                 </Link>
-                <Link href="#features" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
-                  Solution
-                </Link>
                 <Link href="#candidates" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
                   For Candidates
                 </Link>
                 <Link href="#companies" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
                   For Companies
+                </Link>
+                <Link href="#features" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
+                  Solution
                 </Link>
                 <Link href="#contact" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
                   Contact

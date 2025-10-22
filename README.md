@@ -13,6 +13,8 @@ Landing page for an AI-driven hiring platform that transforms applications into 
 ## Quick Start
 
 ```bash
+git clone https://github.com/goodFuturesHQ/landingpage.git
+cd landingpage
 npm install
 npm run dev
 # Visit http://localhost:5173
@@ -46,17 +48,37 @@ landingpage/
 - **Primary (Forest Green)**: `#1E3B33`
 - **Secondary (Amber/Gold)**: `#FFB800`
 - **Solution Icons**: `#326358`
-- **Background**: `#F8F8F6`
+- **Backgrounds**:
+  - Default: `#F8F8F6`
+  - Companies Section: `#E8E6E1`
+  - Paper: `#FFFFFF`
 
 ### Typography
-- **Headings**: Marcellus (serif)
-- **Body**: Inter (sans-serif)
+- **Headings**: Marcellus (serif) - elegant, professional feel
+- **Body**: Inter (sans-serif) - clean, readable
+- **Font Weights**: 400 (regular), 600 (semibold), 700 (bold), 800 (extrabold)
+
+### Interactive Elements
+- **CTA Buttons**: Animated yellow fill expanding from left to right on hover
+- **Scroll Animations**: Fade-in effects triggered on scroll
+- **Logo**: Shimmer animation using gradient
 
 ## Key Sections
 
-- **Hero Section**: Text content with animated rotating icons
-- **Value Proposition**: For Candidates and For Companies
-- **Solutions**: Research-Level Analysis · Coffee Chats · Virtual Assessments · Semantic Matching · Opportunity Discovery
-- **Trust Factors**: Accordion with differentiators
-- **Footer**: Navigation and company info
+- **Navigation Bar**: Logo with shimmer effect, main navigation links, and signup buttons for candidates and companies
+- **Hero Section**: Headline with animated rotating icons and two CTA buttons with expanding yellow circle hover effect
+- **Founders' Memo**: Vision statement explaining the mission and purpose of GoodFutures
+- **For Candidates**: 4-step journey with alternating layout showing how candidates discover fitting opportunities
+- **For Companies**: 4-step journey with alternating layout showing how companies find the right talent
+- **Solution Section**: Five core features (Research-Level Analysis, Coffee Chats, Virtual Assessments, Semantic Matching, Opportunity Discovery)
+- **Trust Factors**: Accordion highlighting how GoodFutures differs from traditional platforms
+- **Final CTA**: "Every great journey begins with a first step" with animated buttons
+- **Footer**: Navigation links and company information
+
+## Features
+
+- Smooth scroll animations and responsive design
+- Interactive button hover states with animated yellow fill
+- Alternating layouts for visual rhythm
+- Mobile-first approach with breakpoints
 
