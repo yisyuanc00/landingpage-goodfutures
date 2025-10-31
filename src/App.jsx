@@ -1024,9 +1024,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(33, 33, 33, 0.2)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         01
@@ -1040,7 +1039,7 @@ function App() {
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
                       >
-                        Upload Your Resume
+                        Upload Resume & Share Your Goals
                       </Typography>
                       <Typography
                         sx={{
@@ -1049,7 +1048,7 @@ function App() {
                           fontSize: '1.1rem',
                         }}
                       >
-                        Start by submitting your resume. Our AI reads beyond the keywords — extracting your skills, experiences, and unique patterns of growth.
+                        Submit your resume and tell us about your target careers. Click "Generate Passport" and our AI analyzes your background, skills, and career aspirations to create your professional profile.
                       </Typography>
                     </Box>
                   </Grid>
@@ -1101,9 +1100,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(33, 33, 33, 0.2)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         02
@@ -1117,7 +1115,7 @@ function App() {
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
                       >
-                        Generate Your Passport
+                        View Your Passport Summary
                       </Typography>
                       <Typography
                         sx={{
@@ -1126,7 +1124,7 @@ function App() {
                           fontSize: '1.1rem',
                         }}
                       >
-                        Instantly create your digital career profile — a living "passport" that highlights your strengths, values, and trajectory, not just your past roles.
+                        Instantly see a comprehensive summary of your professional profile. Your Passport highlights your key strengths, skills, experiences, and career trajectory — giving you insight into how you're positioned in the job market.
                       </Typography>
                     </Box>
                   </Grid>
@@ -1142,9 +1140,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(33, 33, 33, 0.2)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         03
@@ -1158,7 +1155,7 @@ function App() {
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
                       >
-                        Have an AI Coffee Chat
+                        Start Your Coffee Chat
                       </Typography>
                       <Typography
                         sx={{
@@ -1167,7 +1164,7 @@ function App() {
                           fontSize: '1.1rem',
                         }}
                       >
-                        Engage in a friendly, human-like conversation that helps us understand your motivations, working style, and what truly drives you.
+                        Click the Coffee Chat button and engage in a friendly 10-minute AI conversation. We'll explore your motivations, working style, career aspirations, and what truly drives you — helping us understand you beyond your resume.
                       </Typography>
                     </Box>
                   </Grid>
@@ -1219,9 +1216,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(33, 33, 33, 0.2)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         04
@@ -1235,7 +1231,7 @@ function App() {
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
                       >
-                        Receive Insight & Opportunities
+                        Get Your Complete Report
                       </Typography>
                       <Typography
                         sx={{
@@ -1244,7 +1240,7 @@ function App() {
                           fontSize: '1.1rem',
                         }}
                       >
-                        Get personalized feedback on your fit, and explore roles where your strengths and growth potential truly stand out.
+                        Receive a comprehensive report combining your Passport and Coffee Chat insights. Get personalized feedback on your strengths, areas for growth, career fit analysis, and tailored recommendations to help you stand out to the right opportunities.
                       </Typography>
                     </Box>
                   </Grid>
@@ -1273,14 +1269,14 @@ function App() {
                   },
                 }}
               >
-                Start Your Journey
+                Try Our New Features
               </Button>
             </Box>
           </Container>
         </Box>
 
         {/* ===== FOR COMPANIES SECTION ===== */}
-        <Box id="companies" sx={{ bgcolor: '#E8E6E1', py: { xs: 12, md: 16 } }}>
+        <Box id="companies" sx={{ bgcolor: '#5A7A6B', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="lg">
             {/* Companies Hero */}
             <ScrollFade>
@@ -1288,8 +1284,8 @@ function App() {
                 <Chip
                   label="For Companies"
                   sx={{
-                    bgcolor: 'primary.main',
-                    color: '#FFFFFF',
+                    bgcolor: 'secondary.main',
+                    color: '#212121',
                     fontWeight: 600,
                     fontSize: '0.9rem',
                     px: 2,
@@ -1302,7 +1298,7 @@ function App() {
                   sx={{
                     fontSize: { xs: '2rem', md: '3rem' },
                     fontWeight: 700,
-                    color: 'primary.main',
+                    color: '#FFFFFF',
                     mb: 3,
                   }}
                 >
@@ -1312,7 +1308,7 @@ function App() {
                   variant="h6"
                   sx={{
                     fontSize: { xs: '1.1rem', md: '1.3rem' },
-                    color: 'text.secondary',
+                    color: 'rgba(255, 255, 255, 0.85)',
                     maxWidth: '800px',
                     mx: 'auto',
                     lineHeight: 1.6,
@@ -1330,7 +1326,7 @@ function App() {
                 sx={{
                   textAlign: 'center',
                   fontWeight: 700,
-                  color: 'primary.main',
+                  color: '#FFFFFF',
                   mb: 6,
                 }}
               >
@@ -1348,9 +1344,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(255, 255, 255, 0.25)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         01
@@ -1359,7 +1354,7 @@ function App() {
                         variant="h4"
                         sx={{
                           fontWeight: 700,
-                          color: 'primary.main',
+                          color: '#FFFFFF',
                           mb: 2,
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
@@ -1368,7 +1363,7 @@ function App() {
                       </Typography>
                       <Typography
                         sx={{
-                          color: 'text.secondary',
+                          color: 'rgba(255, 255, 255, 0.8)',
                           lineHeight: 1.8,
                           fontSize: '1.1rem',
                         }}
@@ -1380,9 +1375,9 @@ function App() {
                   <Grid item xs={12} md={6}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         p: 4,
                         display: 'flex',
                         alignItems: 'center',
@@ -1390,7 +1385,7 @@ function App() {
                         minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
                         [Illustration]
                       </Typography>
                     </Box>
@@ -1404,9 +1399,9 @@ function App() {
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         p: 4,
                         display: 'flex',
                         alignItems: 'center',
@@ -1414,7 +1409,7 @@ function App() {
                         minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
                         [Illustration]
                       </Typography>
                     </Box>
@@ -1425,9 +1420,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(255, 255, 255, 0.25)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         02
@@ -1436,7 +1430,7 @@ function App() {
                         variant="h4"
                         sx={{
                           fontWeight: 700,
-                          color: 'primary.main',
+                          color: '#FFFFFF',
                           mb: 2,
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
@@ -1445,7 +1439,7 @@ function App() {
                       </Typography>
                       <Typography
                         sx={{
-                          color: 'text.secondary',
+                          color: 'rgba(255, 255, 255, 0.8)',
                           lineHeight: 1.8,
                           fontSize: '1.1rem',
                         }}
@@ -1466,9 +1460,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(255, 255, 255, 0.25)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         03
@@ -1477,7 +1470,7 @@ function App() {
                         variant="h4"
                         sx={{
                           fontWeight: 700,
-                          color: 'primary.main',
+                          color: '#FFFFFF',
                           mb: 2,
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
@@ -1486,7 +1479,7 @@ function App() {
                       </Typography>
                       <Typography
                         sx={{
-                          color: 'text.secondary',
+                          color: 'rgba(255, 255, 255, 0.8)',
                           lineHeight: 1.8,
                           fontSize: '1.1rem',
                         }}
@@ -1498,9 +1491,9 @@ function App() {
                   <Grid item xs={12} md={6}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         p: 4,
                         display: 'flex',
                         alignItems: 'center',
@@ -1508,7 +1501,7 @@ function App() {
                         minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
                         [Illustration]
                       </Typography>
                     </Box>
@@ -1522,9 +1515,9 @@ function App() {
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         p: 4,
                         display: 'flex',
                         alignItems: 'center',
@@ -1532,7 +1525,7 @@ function App() {
                         minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
                         [Illustration]
                       </Typography>
                     </Box>
@@ -1543,9 +1536,8 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'secondary.main',
+                          color: 'rgba(255, 255, 255, 0.25)',
                           mb: 2,
-                          opacity: 0.3,
                         }}
                       >
                         04
@@ -1554,7 +1546,7 @@ function App() {
                         variant="h4"
                         sx={{
                           fontWeight: 700,
-                          color: 'primary.main',
+                          color: '#FFFFFF',
                           mb: 2,
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
@@ -1563,7 +1555,7 @@ function App() {
                       </Typography>
                       <Typography
                         sx={{
-                          color: 'text.secondary',
+                          color: 'rgba(255, 255, 255, 0.8)',
                           lineHeight: 1.8,
                           fontSize: '1.1rem',
                         }}
