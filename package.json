@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "deploy:yisyuan": "npm run build && gh-pages -d dist --repo git@github.com:yisyuanc00/landingpage-goodfutures.git"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
