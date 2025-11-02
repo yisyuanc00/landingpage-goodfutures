@@ -26,6 +26,8 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RecommendIcon from '@mui/icons-material/Recommend';
 import PersonIcon from '@mui/icons-material/Person';
 import BusinessIcon from '@mui/icons-material/Business';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 
 // Import SVG images
 import ResearchIcon from './assets/Research-Level Analysis.svg';
@@ -41,6 +43,10 @@ import MatchIcon from './assets/match.png';
 import TestIcon from './assets/test.png';
 import ChatIcon from './assets/chat.png';
 import AnalysisIcon from './assets/analysis.png';
+import PassportUI from './assets/passport_ui.png';
+import PassportSummary from './assets/passport_summary.png';
+import CompletePassportVideo from './assets/complete-passport.mp4';
+import CoffeeChatVideo from './assets/CoffeeChatDemo.mp4';
 
 function ScrollFade({ children, delay = 0 }) {
   const [opacity, setOpacity] = useState(0);
@@ -83,6 +89,114 @@ function ScrollFade({ children, delay = 0 }) {
     <div ref={ref} style={{ opacity, transition: 'opacity 0.6s ease-out', height: '100%' }}>
       {children}
     </div>
+  );
+}
+
+function VideoPlayer({ src, loop = true, muted = true, autoPlay = true, objectPosition = 'center center', autoPlayOnScroll = false }) {
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (autoPlayOnScroll && videoRef.current && containerRef.current) {
+      const currentContainer = containerRef.current;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && videoRef.current) {
+            videoRef.current.play();
+            setIsPlaying(true);
+          }
+        },
+        { threshold: 0.5 } // 当视频50%可见时触发
+      );
+
+      observer.observe(currentContainer);
+
+      return () => {
+        if (currentContainer) {
+          observer.unobserve(currentContainer);
+        }
+      };
+    }
+  }, [autoPlayOnScroll]);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
+  return (
+    <Box
+      ref={containerRef}
+      sx={{
+        bgcolor: '#F5F5F5',
+        borderRadius: 3,
+        border: '1px solid rgba(30, 59, 51, 0.1)',
+        overflow: 'hidden',
+        height: { xs: '300px', md: '400px' },
+        position: 'relative',
+        cursor: 'pointer',
+        '&:hover': {
+          '& video': {
+            opacity: 0.9,
+          }
+        }
+      }}
+      onClick={togglePlay}
+    >
+      <video
+        ref={videoRef}
+        autoPlay={autoPlay}
+        loop={loop}
+        muted={muted}
+        playsInline
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: objectPosition,
+          display: 'block',
+          transition: 'opacity 0.2s'
+        }}
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Play/Pause Icon */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 12,
+          right: 12,
+          bgcolor: 'rgba(0, 0, 0, 0.3)',
+          borderRadius: '50%',
+          width: 32,
+          height: 32,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.2s',
+          '&:hover': {
+            bgcolor: 'rgba(0, 0, 0, 0.5)',
+            transform: 'scale(1.1)',
+          }
+        }}
+      >
+        {isPlaying ? (
+          <PauseIcon sx={{ color: '#fff', fontSize: 20 }} />
+        ) : (
+          <PlayArrowIcon sx={{ color: '#fff', fontSize: 20 }} />
+        )}
+      </Box>
+    </Box>
   );
 }
 
@@ -956,7 +1070,7 @@ function App() {
         </Box>
 
         {/* ===== FOR CANDIDATES SECTION ===== */}
-        <Box id="candidates" sx={{ bgcolor: '#F8F8F6', py: { xs: 12, md: 16 } }}>
+        <Box id="candidates" sx={{ bgcolor: '#ECECEA', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="lg">
             {/* Candidates Hero */}
             <ScrollFade>
@@ -1055,19 +1169,26 @@ function App() {
                   <Grid item xs={12} md={6}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: '#F5F5F5',
                         borderRadius: 3,
                         border: '1px solid rgba(30, 59, 51, 0.1)',
-                        p: 4,
+                        overflow: 'hidden',
+                        height: { xs: '300px', md: '400px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
-                        [Illustration]
-                      </Typography>
+                      <img
+                        src={PassportUI}
+                        alt="Passport UI"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                      />
                     </Box>
                   </Grid>
                 </Grid>
@@ -1079,19 +1200,26 @@ function App() {
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
-                        bgcolor: 'background.paper',
+                        bgcolor: '#F5F5F5',
                         borderRadius: 3,
                         border: '1px solid rgba(30, 59, 51, 0.1)',
-                        p: 4,
+                        overflow: 'hidden',
+                        height: { xs: '300px', md: '400px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
-                      <Typography variant="body2" color="text.secondary">
-                        [Illustration]
-                      </Typography>
+                      <img
+                        src={PassportSummary}
+                        alt="Passport Summary"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                      />
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
@@ -1169,22 +1297,13 @@ function App() {
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <Box
-                      sx={{
-                        bgcolor: 'background.paper',
-                        borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
-                        p: 4,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
-                      }}
-                    >
-                      <Typography variant="body2" color="text.secondary">
-                        [Illustration]
-                      </Typography>
-                    </Box>
+                    <VideoPlayer
+                      src={CoffeeChatVideo}
+                      loop={false}
+                      muted={false}
+                      autoPlay={false}
+                      autoPlayOnScroll={true}
+                    />
                   </Grid>
                 </Grid>
               </ScrollFade>
@@ -1193,22 +1312,10 @@ function App() {
               <ScrollFade delay={300}>
                 <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
-                    <Box
-                      sx={{
-                        bgcolor: 'background.paper',
-                        borderRadius: 3,
-                        border: '1px solid rgba(30, 59, 51, 0.1)',
-                        p: 4,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
-                      }}
-                    >
-                      <Typography variant="body2" color="text.secondary">
-                        [Illustration]
-                      </Typography>
-                    </Box>
+                    <VideoPlayer
+                      src={CompletePassportVideo}
+                      objectPosition="55% center"
+                    />
                   </Grid>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
                     <Box>
