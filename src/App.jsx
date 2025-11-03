@@ -45,6 +45,8 @@ import ChatIcon from './assets/chat.png';
 import AnalysisIcon from './assets/analysis.png';
 import PassportUI from './assets/passport_ui.png';
 import PassportSummary from './assets/passport_summary.png';
+import UploadJD from './assets/UploadJD.png';
+import MatchedCandidates from './assets/Matched Candidates.png';
 import CompletePassportVideo from './assets/complete-passport.mp4';
 import CoffeeChatVideo from './assets/CoffeeChatDemo.mp4';
 
@@ -1518,15 +1520,24 @@ function App() {
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
+                        overflow: 'hidden',
                         height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
-                        [Illustration]
-                      </Typography>
+                      <img
+                        src={UploadJD}
+                        alt="Upload Job Description"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: '60% center',
+                          display: 'block'
+                        }}
+                      />
                     </Box>
                   </Grid>
                 </Grid>
@@ -1541,15 +1552,24 @@ function App() {
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
+                        overflow: 'hidden',
                         height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
-                        [Illustration]
-                      </Typography>
+                      <img
+                        src={MatchedCandidates}
+                        alt="Matched Candidates"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: '48% center',
+                          display: 'block'
+                        }}
+                      />
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
@@ -1613,7 +1633,7 @@ function App() {
                           fontSize: { xs: '1.75rem', md: '2rem' },
                         }}
                       >
-                        Review Candidate Passports
+                        Go Beyond Résumés, Choose the Right Fit
                       </Typography>
                       <Typography
                         sx={{
@@ -1622,83 +1642,15 @@ function App() {
                           fontSize: '1.1rem',
                         }}
                       >
-                        Explore detailed profiles that go beyond résumés — uncover motivations, working styles, and what makes each person stand out.
+                        Dive into each candidate's Passport, understand who they really are, and confidently select the best long-term match.
                       </Typography>
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <Box
-                      sx={{
-                        bgcolor: 'rgba(255, 255, 255, 0.1)',
-                        borderRadius: 3,
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        height: { xs: '320px', md: '450px' },
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
-                        [Illustration]
-                      </Typography>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </ScrollFade>
-
-              {/* Step 04 - Image Left, Content Right */}
-              <ScrollFade delay={300}>
-                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
-                  <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
-                    <Box
-                      sx={{
-                        bgcolor: 'rgba(255, 255, 255, 0.1)',
-                        borderRadius: 3,
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        height: { xs: '320px', md: '450px' },
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
-                        [Illustration]
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} md={6} sx={{ order: { xs: 1, md: 2 } }}>
-                    <Box>
-                      <Typography
-                        sx={{
-                          fontSize: '3rem',
-                          fontWeight: 700,
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          mb: 2,
-                        }}
-                      >
-                        04
-                      </Typography>
-                      <Typography
-                        variant="h4"
-                        sx={{
-                          fontWeight: 700,
-                          color: '#FFFFFF',
-                          mb: 2,
-                          fontSize: { xs: '1.75rem', md: '2rem' },
-                        }}
-                      >
-                        Make Confident Decisions
-                      </Typography>
-                      <Typography
-                        sx={{
-                          color: 'rgba(255, 255, 255, 0.8)',
-                          lineHeight: 1.8,
-                          fontSize: '1.1rem',
-                        }}
-                      >
-                        Compare candidates with clarity and confidence, backed by data and human-centered insights to find the right long-term fit.
-                      </Typography>
-                    </Box>
+                    <VideoPlayer
+                      src={CompletePassportVideo}
+                      objectPosition="55% center"
+                    />
                   </Grid>
                 </Grid>
               </ScrollFade>
