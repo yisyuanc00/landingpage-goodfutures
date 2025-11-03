@@ -96,18 +96,21 @@ function VideoPlayer({ src, loop = true, muted = true, autoPlay = true, objectPo
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const videoRef = useRef(null);
   const containerRef = useRef(null);
+  const hasAutoPlayedRef = useRef(false); // Track if video has auto-played once
 
   useEffect(() => {
     if (autoPlayOnScroll && videoRef.current && containerRef.current) {
       const currentContainer = containerRef.current;
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting && videoRef.current) {
+          // Only auto-play on first intersection
+          if (entry.isIntersecting && videoRef.current && !hasAutoPlayedRef.current) {
             videoRef.current.play();
             setIsPlaying(true);
+            hasAutoPlayedRef.current = true; // Mark as auto-played
           }
         },
-        { threshold: 0.5 } // 当视频50%可见时触发
+        { threshold: 0.5 } // Trigger when video is 50% visible
       );
 
       observer.observe(currentContainer);
@@ -140,7 +143,7 @@ function VideoPlayer({ src, loop = true, muted = true, autoPlay = true, objectPo
         borderRadius: 3,
         border: '1px solid rgba(30, 59, 51, 0.1)',
         overflow: 'hidden',
-        height: { xs: '300px', md: '400px' },
+        height: { xs: '320px', md: '450px' },
         position: 'relative',
         cursor: 'pointer',
         '&:hover': {
@@ -255,6 +258,31 @@ function ScrollFadeEnhanced({ children, delay = 0 }) {
   );
 }
 function App() {
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['vision', 'candidates', 'companies', 'features'];
+      const scrollPosition = window.scrollY + 200; // Offset for navbar height
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       {/* Main Content Container */}
@@ -279,10 +307,10 @@ function App() {
               height: { xs: '60px', md: '70px' },
               py: { xs: 1.5, md: 2 },
               px: { xs: 2, md: 3 },
-              bgcolor: 'rgba(255, 255, 255, 0.3)',
+              bgcolor: 'rgba(255, 255, 255, 0.9)',
               backdropFilter: 'blur(20px)',
               borderRadius: '50px',
-              border: '1px solid rgba(30, 59, 51, 0.08)',
+              border: '1px solid rgba(30, 59, 51, 0.15)',
             }}>
               {/* Logo */}
               <Link
@@ -306,7 +334,7 @@ function App() {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     animation: 'shine 6s ease-in-out infinite',
-                    fontSize: '1.5rem',
+                    fontSize: '1.65rem',
                   }}
                 />
                 <Typography variant="h6" sx={{
@@ -315,6 +343,7 @@ function App() {
                     '100%': { backgroundPosition: '200% center' }
                   },
                   fontWeight: 700,
+                  fontSize: '1.35rem',
                   background: 'linear-gradient(90deg, #1E3B33 0%, #4A8B7F 25%, #1E3B33 50%, #4A8B7F 75%, #1E3B33 100%)',
                   backgroundSize: '200% auto',
                   backgroundClip: 'text',
@@ -337,12 +366,13 @@ function App() {
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
                     padding: '8px 16px',
                     borderRadius: '8px',
                     border: '1px solid transparent',
-                    transition: 'all 0.2s',
+                    borderBottom: activeSection === 'vision' ? '3px solid #FFB800' : '3px solid transparent',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
                       bgcolor: 'rgba(30, 59, 51, 0.08)',
                       borderColor: 'rgba(30, 59, 51, 0.2)'
@@ -356,12 +386,13 @@ function App() {
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
                     padding: '8px 16px',
                     borderRadius: '8px',
                     border: '1px solid transparent',
-                    transition: 'all 0.2s',
+                    borderBottom: activeSection === 'candidates' ? '3px solid #FFB800' : '3px solid transparent',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
                       bgcolor: 'rgba(30, 59, 51, 0.08)',
                       borderColor: 'rgba(30, 59, 51, 0.2)'
@@ -375,12 +406,13 @@ function App() {
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
                     padding: '8px 16px',
                     border: '1px solid transparent',
                     borderRadius: '8px',
-                    transition: 'all 0.2s',
+                    borderBottom: activeSection === 'companies' ? '3px solid #FFB800' : '3px solid transparent',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
                       bgcolor: 'rgba(30, 59, 51, 0.08)',
                       borderColor: 'rgba(30, 59, 51, 0.2)'
@@ -394,12 +426,13 @@ function App() {
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '0.95rem',
-                    fontWeight: 500,
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
                     padding: '8px 16px',
                     borderRadius: '8px',
                     border: '1px solid transparent',
-                    transition: 'all 0.2s',
+                    borderBottom: activeSection === 'features' ? '3px solid #FFB800' : '3px solid transparent',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
                       bgcolor: 'rgba(30, 59, 51, 0.08)',
                       borderColor: 'rgba(30, 59, 51, 0.2)'
@@ -960,7 +993,7 @@ function App() {
         </Box>
 
         {/* ===== VISION SECTION ===== */}
-        <Box id="vision" sx={{ bgcolor: 'background.default', py: { xs: 12, md: 16 } }}>
+        <Box id="vision" sx={{ bgcolor: '#ECECEA', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="md">
             <ScrollFade delay={0}>
               <Box
@@ -1131,14 +1164,14 @@ function App() {
             <Box sx={{ mb: 10 }}>
               {/* Step 01 - Content Left, Image Right */}
               <ScrollFade delay={0}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6}>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(33, 33, 33, 0.2)',
+                          color: 'rgba(33, 33, 33, 0.8)',
                           mb: 2,
                         }}
                       >
@@ -1173,7 +1206,7 @@ function App() {
                         borderRadius: 3,
                         border: '1px solid rgba(30, 59, 51, 0.1)',
                         overflow: 'hidden',
-                        height: { xs: '300px', md: '400px' },
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1185,7 +1218,7 @@ function App() {
                         style={{
                           width: '100%',
                           height: '100%',
-                          objectFit: 'contain',
+                          objectFit: 'cover',
                           display: 'block'
                         }}
                       />
@@ -1196,7 +1229,7 @@ function App() {
 
               {/* Step 02 - Image Left, Content Right */}
               <ScrollFade delay={100}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
@@ -1204,7 +1237,7 @@ function App() {
                         borderRadius: 3,
                         border: '1px solid rgba(30, 59, 51, 0.1)',
                         overflow: 'hidden',
-                        height: { xs: '300px', md: '400px' },
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1216,7 +1249,7 @@ function App() {
                         style={{
                           width: '100%',
                           height: '100%',
-                          objectFit: 'contain',
+                          objectFit: 'cover',
                           display: 'block'
                         }}
                       />
@@ -1228,7 +1261,7 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(33, 33, 33, 0.2)',
+                          color: 'rgba(33, 33, 33, 0.8)',
                           mb: 2,
                         }}
                       >
@@ -1261,14 +1294,14 @@ function App() {
 
               {/* Step 03 - Content Left, Image Right */}
               <ScrollFade delay={200}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6}>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(33, 33, 33, 0.2)',
+                          color: 'rgba(33, 33, 33, 0.8)',
                           mb: 2,
                         }}
                       >
@@ -1310,7 +1343,7 @@ function App() {
 
               {/* Step 04 - Image Left, Content Right */}
               <ScrollFade delay={300}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <VideoPlayer
                       src={CompletePassportVideo}
@@ -1323,7 +1356,7 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(33, 33, 33, 0.2)',
+                          color: 'rgba(33, 33, 33, 0.8)',
                           mb: 2,
                         }}
                       >
@@ -1376,14 +1409,14 @@ function App() {
                   },
                 }}
               >
-                Try Our New Features
+                Unlock Your Personalized Career Insights
               </Button>
             </Box>
           </Container>
         </Box>
 
         {/* ===== FOR COMPANIES SECTION ===== */}
-        <Box id="companies" sx={{ bgcolor: '#5A7A6B', py: { xs: 12, md: 16 } }}>
+        <Box id="companies" sx={{ bgcolor: '#6B8B7E', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="lg">
             {/* Companies Hero */}
             <ScrollFade>
@@ -1391,8 +1424,8 @@ function App() {
                 <Chip
                   label="For Companies"
                   sx={{
-                    bgcolor: 'secondary.main',
-                    color: '#212121',
+                    bgcolor: '#FFFFFF',
+                    color: '#1E3B33',
                     fontWeight: 600,
                     fontSize: '0.9rem',
                     px: 2,
@@ -1444,14 +1477,14 @@ function App() {
             <Box sx={{ mb: 10 }}>
               {/* Step 01 - Content Left, Image Right */}
               <ScrollFade delay={0}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6}>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(255, 255, 255, 0.25)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           mb: 2,
                         }}
                       >
@@ -1485,11 +1518,10 @@ function App() {
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
-                        p: 4,
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
                       <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
@@ -1502,18 +1534,17 @@ function App() {
 
               {/* Step 02 - Image Left, Content Right */}
               <ScrollFade delay={100}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
-                        p: 4,
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
                       <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
@@ -1527,7 +1558,7 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(255, 255, 255, 0.25)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           mb: 2,
                         }}
                       >
@@ -1560,14 +1591,14 @@ function App() {
 
               {/* Step 03 - Content Left, Image Right */}
               <ScrollFade delay={200}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6}>
                     <Box>
                       <Typography
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(255, 255, 255, 0.25)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           mb: 2,
                         }}
                       >
@@ -1601,11 +1632,10 @@ function App() {
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
-                        p: 4,
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
                       <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
@@ -1618,18 +1648,17 @@ function App() {
 
               {/* Step 04 - Image Left, Content Right */}
               <ScrollFade delay={300}>
-                <Grid container spacing={6} sx={{ mb: 8, alignItems: 'center' }}>
+                <Grid container spacing={4} sx={{ mb: 8, alignItems: 'center' }}>
                   <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 1 } }}>
                     <Box
                       sx={{
                         bgcolor: 'rgba(255, 255, 255, 0.1)',
                         borderRadius: 3,
                         border: '1px solid rgba(255, 255, 255, 0.2)',
-                        p: 4,
+                        height: { xs: '320px', md: '450px' },
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minHeight: { xs: 200, md: 300 },
                       }}
                     >
                       <Typography variant="body2" color="rgba(255, 255, 255, 0.6)">
@@ -1643,7 +1672,7 @@ function App() {
                         sx={{
                           fontSize: '3rem',
                           fontWeight: 700,
-                          color: 'rgba(255, 255, 255, 0.25)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           mb: 2,
                         }}
                       >
@@ -1703,7 +1732,7 @@ function App() {
         </Box>
 
         {/* ===== FEATURES SECTION ===== */}
-        <Box sx={{ bgcolor: 'background.default', py: { xs: 12, md: 16 } }} id="features">
+        <Box sx={{ bgcolor: '#ECECEA', py: { xs: 12, md: 16 } }} id="features">
           <Container maxWidth="lg">
             {/* Section Header */}
             <Box sx={{ textAlign: 'center', mb: 8 }}>
@@ -1902,7 +1931,7 @@ function App() {
         </Box>
 
         {/* ===== BENEFITS SECTION ===== */}
-        <Box sx={{ bgcolor: 'background.default', py: { xs: 12, md: 16 } }}>
+        <Box sx={{ bgcolor: '#ECECEA', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="lg">
             <ScrollFade delay={0}>
               <Typography
@@ -2075,7 +2104,7 @@ function App() {
         </Box>
 
         {/* ===== FINAL CTA SECTION ===== */}
-        <Box sx={{ bgcolor: 'background.default', py: { xs: 12, md: 16 } }}>
+        <Box sx={{ bgcolor: '#ECECEA', py: { xs: 12, md: 16 } }}>
           <Container maxWidth="lg">
             <ScrollFade delay={0}>
               <Box
