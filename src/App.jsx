@@ -312,9 +312,9 @@ function App() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              height: { xs: '50px', md: '70px' },
-              py: { xs: 1, md: 2 },
-              px: { xs: 2, md: 3 },
+              minHeight: { xs: '54px', md: '70px' },
+              py: { xs: 0.5, md: 2 },
+              px: { xs: 1.5, md: 3 },
               bgcolor: mobileMenuAnchor ? '#F8F8F6' : 'rgba(255, 255, 255, 0.9)',
               backdropFilter: 'blur(20px)',
               borderRadius: '50px',
@@ -532,6 +532,7 @@ function App() {
 
               {/* Hamburger Menu Icon - Far Right */}
               <IconButton
+                size="small"
                 sx={{
                   display: 'flex',
                   '@media (min-width: 1350px)': {
@@ -539,6 +540,10 @@ function App() {
                   },
                   color: 'primary.main',
                   zIndex: 1500,
+                  padding: { xs: '6px', md: '8px' },
+                  '& svg': {
+                    fontSize: { xs: '1.5rem', md: '1.75rem' },
+                  },
                 }}
                 onClick={() => setMobileMenuAnchor(mobileMenuAnchor ? null : true)}
               >
@@ -711,7 +716,7 @@ function App() {
           }}
         >
           <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-            <Grid container spacing={6} sx={{ py: { xs: 12, md: 20 }, alignItems: 'center' }}>
+            <Grid container spacing={6} sx={{ pt: { xs: 16, md: 20 }, pb: { xs: 12, md: 20 }, alignItems: 'center' }}>
               {/* Left Column - Text Content */}
               <Grid item xs={12} md={8} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
               <Box
@@ -760,7 +765,7 @@ function App() {
                   variant="h1"
                   sx={{
                     position: 'relative',
-                    fontSize: { xs: '2rem', sm: '2.5rem', md: '3.2rem', lg: '4rem' },
+                    fontSize: { xs: '2.5rem', sm: '2.8rem', md: '3.2rem', lg: '4rem' },
                     mb: 0,
                     lineHeight: 1.2,
                     color: 'primary.main',
@@ -796,7 +801,7 @@ function App() {
                 sx={{
                   mt: 5,
                   mb: 6,
-                  fontSize: { xs: '1.1rem', md: '1.5rem' },
+                  fontSize: { xs: '0.95rem', sm: '1.05rem', md: '1.5rem' },
                   lineHeight: 1.6,
                   opacity: 0,
                   animation: 'heroSubtitleEntrance 1.2s ease-out 0.3s forwards',
