@@ -19,6 +19,8 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -148,7 +150,9 @@ function VideoPlayer({ src, loop = true, muted = true, autoPlay = true, objectPo
         height: { xs: '320px', md: '450px' },
         position: 'relative',
         cursor: 'pointer',
+        transition: 'transform 0.3s ease',
         '&:hover': {
+          transform: 'scale(1.05)',
           '& video': {
             opacity: 0.9,
           }
@@ -261,6 +265,7 @@ function ScrollFadeEnhanced({ children, delay = 0 }) {
 }
 function App() {
   const [activeSection, setActiveSection] = useState('');
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -299,31 +304,33 @@ function App() {
             backdropFilter: 'none',
             borderBottom: 'none',
             boxShadow: 'none',
+            zIndex: 1450,
           }}
         >
-          <Container maxWidth="xl" sx={{ pt: 2, px: { xs: 2, sm: 3 } }}>
+          <Container maxWidth="xl" sx={{ pt: { xs: 1, md: 2 }, px: { xs: 2, sm: 3 } }}>
             <Box sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              height: { xs: '60px', md: '70px' },
-              py: { xs: 1.5, md: 2 },
+              height: { xs: '50px', md: '70px' },
+              py: { xs: 1, md: 2 },
               px: { xs: 2, md: 3 },
-              bgcolor: 'rgba(255, 255, 255, 0.9)',
+              bgcolor: mobileMenuAnchor ? '#F8F8F6' : 'rgba(255, 255, 255, 0.9)',
               backdropFilter: 'blur(20px)',
               borderRadius: '50px',
               border: '1px solid rgba(30, 59, 51, 0.15)',
             }}>
-              {/* Logo */}
-              <Link
-                href="#"
-                underline="none"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
-                }}
-              >
+              {/* Logo + Mobile Menu Button */}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                  }}
+                >
                 <RecommendIcon
                   sx={{
                     '@keyframes shine': {
@@ -336,7 +343,7 @@ function App() {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     animation: 'shine 6s ease-in-out infinite',
-                    fontSize: '1.65rem',
+                    fontSize: { xs: '1.3rem', md: '1.65rem' },
                   }}
                 />
                 <Typography variant="h6" sx={{
@@ -345,7 +352,7 @@ function App() {
                     '100%': { backgroundPosition: '200% center' }
                   },
                   fontWeight: 700,
-                  fontSize: '1.35rem',
+                  fontSize: { xs: '1.1rem', md: '1.35rem' },
                   background: 'linear-gradient(90deg, #1E3B33 0%, #4A8B7F 25%, #1E3B33 50%, #4A8B7F 75%, #1E3B33 100%)',
                   backgroundSize: '200% auto',
                   backgroundClip: 'text',
@@ -356,23 +363,27 @@ function App() {
                   GoodFutures
                 </Typography>
               </Link>
+              </Box>
 
               {/* Center Navigation */}
               <Box sx={{
-                display: { xs: 'none', md: 'flex' },
+                display: mobileMenuAnchor ? 'none' : 'flex',
                 alignItems: 'center',
-                gap: 4
+                gap: { xs: 1.5, md: 4 }
               }}>
                 <Link
                   href="#vision"
                   underline="none"
                   sx={{
+                    display: { xs: 'none', md: 'block' },
                     color: 'primary.main',
                     fontSize: '1.05rem',
                     fontWeight: 700,
                     padding: '8px 16px',
                     borderRadius: '8px',
                     border: '1px solid transparent',
+                    bgcolor: activeSection === 'vision' ? 'rgba(255, 184, 0, 0.08)' : 'transparent',
+                    borderColor: activeSection === 'vision' ? 'rgba(255, 184, 0, 0.3)' : 'transparent',
                     borderBottom: activeSection === 'vision' ? '3px solid #FFB800' : '3px solid transparent',
                     transition: 'all 0.3s ease',
                     '&:hover': {
@@ -388,11 +399,13 @@ function App() {
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '1.05rem',
+                    fontSize: { xs: '0.85rem', md: '1.05rem' },
                     fontWeight: 700,
-                    padding: '8px 16px',
+                    padding: { xs: '6px 10px', md: '8px 16px' },
                     borderRadius: '8px',
                     border: '1px solid transparent',
+                    bgcolor: activeSection === 'candidates' ? 'rgba(255, 184, 0, 0.08)' : 'transparent',
+                    borderColor: activeSection === 'candidates' ? 'rgba(255, 184, 0, 0.3)' : 'transparent',
                     borderBottom: activeSection === 'candidates' ? '3px solid #FFB800' : '3px solid transparent',
                     transition: 'all 0.3s ease',
                     '&:hover': {
@@ -401,18 +414,21 @@ function App() {
                     }
                   }}
                 >
-                  For Candidates
+                  <Box component="span" sx={{ display: { xs: 'none', md: 'inline' } }}>For Candidates</Box>
+                  <Box component="span" sx={{ display: { xs: 'inline', md: 'none' } }}>Candidates</Box>
                 </Link>
                 <Link
                   href="#companies"
                   underline="none"
                   sx={{
                     color: 'primary.main',
-                    fontSize: '1.05rem',
+                    fontSize: { xs: '0.85rem', md: '1.05rem' },
                     fontWeight: 700,
-                    padding: '8px 16px',
+                    padding: { xs: '6px 10px', md: '8px 16px' },
                     border: '1px solid transparent',
                     borderRadius: '8px',
+                    bgcolor: activeSection === 'companies' ? 'rgba(255, 184, 0, 0.08)' : 'transparent',
+                    borderColor: activeSection === 'companies' ? 'rgba(255, 184, 0, 0.3)' : 'transparent',
                     borderBottom: activeSection === 'companies' ? '3px solid #FFB800' : '3px solid transparent',
                     transition: 'all 0.3s ease',
                     '&:hover': {
@@ -421,18 +437,22 @@ function App() {
                     }
                   }}
                 >
-                  For Companies
+                  <Box component="span" sx={{ display: { xs: 'none', md: 'inline' } }}>For Companies</Box>
+                  <Box component="span" sx={{ display: { xs: 'inline', md: 'none' } }}>Companies</Box>
                 </Link>
                 <Link
                   href="#features"
                   underline="none"
                   sx={{
+                    display: { xs: 'none', md: 'block' },
                     color: 'primary.main',
                     fontSize: '1.05rem',
                     fontWeight: 700,
                     padding: '8px 16px',
                     borderRadius: '8px',
                     border: '1px solid transparent',
+                    bgcolor: activeSection === 'features' ? 'rgba(255, 184, 0, 0.08)' : 'transparent',
+                    borderColor: activeSection === 'features' ? 'rgba(255, 184, 0, 0.3)' : 'transparent',
                     borderBottom: activeSection === 'features' ? '3px solid #FFB800' : '3px solid transparent',
                     transition: 'all 0.3s ease',
                     '&:hover': {
@@ -446,27 +466,34 @@ function App() {
               </Box>
 
               {/* Right Actions */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
+              <Box sx={{
+                display: 'none',
+                '@media (min-width: 1350px)': {
+                  display: 'flex',
+                },
+                alignItems: 'center',
+                gap: 1.5
+              }}>
                 <Button
                   variant="contained"
                   sx={{
                     bgcolor: 'secondary.main',
                     color: '#212121',
                     borderRadius: '50px',
-                    px: { xs: 2, sm: 3 },
+                    px: { lg: 2.5, xl: 3 },
                     py: 1,
-                    fontSize: { xs: '0.8rem', sm: '0.9rem' },
+                    fontSize: { lg: '0.85rem', xl: '0.9rem' },
                     fontWeight: 600,
                     textTransform: 'none',
                     boxShadow: 'none',
-                    display: { xs: 'none', lg: 'block' },
-                    width: { sm: '180px', md: '200px' },
+                    border: '2px solid transparent',
+                    minWidth: { lg: '160px', xl: '180px' },
                     height: '40px',
+                    whiteSpace: 'nowrap',
                     transition: 'background-color 0.2s ease',
                     '&:hover': {
                       bgcolor: 'secondary.dark',
                       boxShadow: 'none',
-                      transform: 'none',
                     },
                   }}
                 >
@@ -480,31 +507,197 @@ function App() {
                     border: '2px solid',
                     borderColor: 'secondary.main',
                     borderRadius: '50px',
-                    px: { xs: 2, sm: 3 },
+                    px: { lg: 2.5, xl: 3 },
                     py: 1,
-                    fontSize: { xs: '0.8rem', sm: '0.9rem' },
+                    fontSize: { lg: '0.85rem', xl: '0.9rem' },
                     fontWeight: 600,
                     textTransform: 'none',
                     boxShadow: 'none',
-                    width: { xs: '120px', sm: '180px', md: '200px' },
+                    minWidth: { lg: '160px', xl: '180px' },
                     height: '40px',
+                    whiteSpace: 'nowrap',
                     transition: 'background-color 0.2s ease, color 0.2s ease',
                     '&:hover': {
                       bgcolor: 'secondary.main',
                       color: '#212121',
+                      border: '2px solid',
                       borderColor: 'secondary.main',
                       boxShadow: 'none',
-                      transform: 'none',
                     },
                   }}
                 >
-                  <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Sign up as company</Box>
-                  <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Sign up</Box>
+                  Sign up as company
                 </Button>
               </Box>
+
+              {/* Hamburger Menu Icon - Far Right */}
+              <IconButton
+                sx={{
+                  display: 'flex',
+                  '@media (min-width: 1350px)': {
+                    display: 'none',
+                  },
+                  color: 'primary.main',
+                  zIndex: 1500,
+                }}
+                onClick={() => setMobileMenuAnchor(mobileMenuAnchor ? null : true)}
+              >
+                {mobileMenuAnchor ? <CloseIcon /> : <MenuIcon />}
+              </IconButton>
             </Box>
           </Container>
         </AppBar>
+
+        {/* Mobile Navigation Menu - Overlay */}
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 90,
+            left: 0,
+            right: 0,
+            bgcolor: 'rgba(248, 248, 246, 0.98)',
+            backdropFilter: 'blur(10px)',
+            zIndex: 1400,
+            display: mobileMenuAnchor ? 'flex' : 'none',
+            flexDirection: 'column',
+            alignItems: 'center',
+            py: 4,
+            px: 3,
+            gap: 0.5,
+            boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)',
+            animation: mobileMenuAnchor ? 'slideDown 0.3s ease-out' : 'none',
+            '@keyframes slideDown': {
+              from: {
+                opacity: 0,
+                transform: 'translateY(-20px)'
+              },
+              to: {
+                opacity: 1,
+                transform: 'translateY(0)'
+              }
+            }
+          }}
+        >
+          <Link
+            href="#vision"
+            underline="none"
+            onClick={() => setMobileMenuAnchor(null)}
+            sx={{
+              color: 'primary.main',
+              fontSize: '1rem',
+              fontWeight: 600,
+              py: 1.5,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                color: 'secondary.main',
+              }
+            }}
+          >
+            Vision
+          </Link>
+          <Link
+            href="#candidates"
+            underline="none"
+            onClick={() => setMobileMenuAnchor(null)}
+            sx={{
+              color: 'primary.main',
+              fontSize: '1rem',
+              fontWeight: 600,
+              py: 1.5,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                color: 'secondary.main',
+              }
+            }}
+          >
+            For Candidates
+          </Link>
+          <Link
+            href="#companies"
+            underline="none"
+            onClick={() => setMobileMenuAnchor(null)}
+            sx={{
+              color: 'primary.main',
+              fontSize: '1rem',
+              fontWeight: 600,
+              py: 1.5,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                color: 'secondary.main',
+              }
+            }}
+          >
+            For Companies
+          </Link>
+          <Link
+            href="#features"
+            underline="none"
+            onClick={() => setMobileMenuAnchor(null)}
+            sx={{
+              color: 'primary.main',
+              fontSize: '1rem',
+              fontWeight: 600,
+              py: 1.5,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                color: 'secondary.main',
+              }
+            }}
+          >
+            Solution
+          </Link>
+
+          <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 2, width: '90%', maxWidth: '500px', px: 2 }}>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: 'secondary.main',
+                color: '#212121',
+                borderRadius: '50px',
+                py: 2,
+                height: '56px',
+                fontSize: '1rem',
+                fontWeight: 600,
+                textTransform: 'none',
+                boxShadow: 'none',
+                border: '2px solid transparent',
+                transition: 'background-color 0.2s ease',
+                '&:hover': {
+                  bgcolor: 'secondary.dark',
+                  boxShadow: 'none',
+                },
+              }}
+            >
+              Sign up as candidate
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                bgcolor: 'transparent',
+                color: 'primary.main',
+                border: '2px solid',
+                borderColor: 'secondary.main',
+                borderRadius: '50px',
+                py: 2,
+                height: '56px',
+                fontSize: '1rem',
+                fontWeight: 600,
+                textTransform: 'none',
+                boxShadow: 'none',
+                transition: 'background-color 0.2s ease, color 0.2s ease',
+                '&:hover': {
+                  bgcolor: 'secondary.main',
+                  color: '#212121',
+                  border: '2px solid',
+                  borderColor: 'secondary.main',
+                  boxShadow: 'none',
+                },
+              }}
+            >
+              Sign up as company
+            </Button>
+          </Box>
+        </Box>
 
         {/* ===== HERO SECTION ===== */}
         <Box
@@ -520,7 +713,7 @@ function App() {
           <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
             <Grid container spacing={6} sx={{ py: { xs: 12, md: 20 }, alignItems: 'center' }}>
               {/* Left Column - Text Content */}
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} md={8} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
               <Box
                 sx={{
                   position: 'relative',
@@ -624,9 +817,11 @@ function App() {
 
               <Box sx={{
                 display: 'flex',
-                gap: 2,
-                flexWrap: 'wrap',
-                justifyContent: 'flex-start',
+                flexDirection: 'row',
+                gap: { xs: 1, sm: 2 },
+                flexWrap: 'nowrap',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                width: '100%',
                 opacity: 0,
                 animation: 'heroCtaEntrance 1.2s ease-out 0.5s forwards',
                 '@keyframes heroCtaEntrance': {
@@ -649,12 +844,14 @@ function App() {
                     bgcolor: 'transparent',
                     color: '#212121',
                     borderRadius: '50px',
-                    pl: 5,
-                    pr: 2.5,
-                    height: '60px',
+                    pl: { xs: 2.5, sm: 5 },
+                    pr: { xs: 1.5, sm: 2.5 },
+                    height: { xs: '50px', sm: '56px', md: '60px' },
                     py: 0,
-                    width: '300px',
-                    fontSize: '1.05rem',
+                    flex: { xs: '1 1 0', sm: '0 1 280px', md: '0 1 300px' },
+                    minWidth: { xs: 0, sm: '280px' },
+                    maxWidth: { sm: '300px' },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.05rem' },
                     fontWeight: 600,
                     textTransform: 'none',
                     border: '2px solid #FFB800',
@@ -664,7 +861,7 @@ function App() {
                       top: 0,
                       left: 0,
                       bottom: 0,
-                      width: '60px',
+                      width: { xs: '50px', sm: '60px' },
                       bgcolor: 'secondary.main',
                       borderRadius: '50px',
                       transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -679,7 +876,7 @@ function App() {
                     },
                     '& .icon-circle': {
                       position: 'absolute',
-                      left: '20px',
+                      left: { xs: '16px', sm: '20px' },
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 1,
@@ -696,13 +893,15 @@ function App() {
                     },
                   }}
                 >
-                    <PersonIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                    <PersonIcon className="icon-circle" sx={{ fontSize: { xs: 18, sm: 20 }, color: '#212121' }} />
                     <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-                      <span>For Candidates</span>
+                      <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>For Candidates</Box>
+                      <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Candidates</Box>
                     </Box>
-                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
-                      <PersonIcon sx={{ fontSize: 20 }} />
-                      <span>Discover Your Fit</span>
+                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: { xs: 0.5, sm: 1 }, justifyContent: 'center', width: '100%' }}>
+                      <PersonIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
+                      <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Discover Your Fit</Box>
+                      <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Your Fit</Box>
                     </Box>
                   </Button>
                 <Button
@@ -714,12 +913,14 @@ function App() {
                     bgcolor: 'transparent',
                     color: '#212121',
                     borderRadius: '50px',
-                    pl: 5,
-                    pr: 2.5,
-                    height: '60px',
+                    pl: { xs: 2.5, sm: 5 },
+                    pr: { xs: 1.5, sm: 2.5 },
+                    height: { xs: '50px', sm: '56px', md: '60px' },
                     py: 0,
-                    width: '300px',
-                    fontSize: '1.05rem',
+                    flex: { xs: '1 1 0', sm: '0 1 280px', md: '0 1 300px' },
+                    minWidth: { xs: 0, sm: '280px' },
+                    maxWidth: { sm: '300px' },
+                    fontSize: { xs: '0.85rem', sm: '1rem', md: '1.05rem' },
                     fontWeight: 600,
                     textTransform: 'none',
                     border: '2px solid #FFB800',
@@ -729,7 +930,7 @@ function App() {
                       top: 0,
                       left: 0,
                       bottom: 0,
-                      width: '60px',
+                      width: { xs: '50px', sm: '60px' },
                       bgcolor: 'secondary.main',
                       borderRadius: '50px',
                       transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -744,7 +945,7 @@ function App() {
                     },
                     '& .icon-circle': {
                       position: 'absolute',
-                      left: '20px',
+                      left: { xs: '16px', sm: '20px' },
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 1,
@@ -761,25 +962,27 @@ function App() {
                     },
                   }}
                 >
-                    <BusinessIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                    <BusinessIcon className="icon-circle" sx={{ fontSize: { xs: 18, sm: 20 }, color: '#212121' }} />
                     <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-                      <span>For Companies</span>
+                      <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>For Companies</Box>
+                      <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Companies</Box>
                     </Box>
-                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
-                      <BusinessIcon sx={{ fontSize: 20 }} />
-                      <span>Find the Right Talent</span>
+                    <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: { xs: 0.5, sm: 1 }, justifyContent: 'center', width: '100%' }}>
+                      <BusinessIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
+                      <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Find the Right Talent</Box>
+                      <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>Find Talent</Box>
                     </Box>
                   </Button>
               </Box>
               </Grid>
 
               {/* Right Column - Hero Image */}
-              <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Grid item xs={12} md={4} sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'center' }}>
                 <Box
                   sx={{
                     position: 'relative',
                     width: '100%',
-                    maxWidth: '380px',
+                    maxWidth: { md: '280px', lg: '320px', xl: '380px' },
                     opacity: 0,
                     animation: 'heroImageEntrance 1.2s ease-out 0.4s forwards',
                     '@keyframes heroImageEntrance': {
@@ -803,8 +1006,8 @@ function App() {
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: '120%',
-                        height: '120%',
+                        width: '100%',
+                        height: '100%',
                         border: '1px solid rgba(30, 59, 51, 0.15)',
                         borderRadius: '50%',
                         zIndex: 0,
@@ -817,8 +1020,8 @@ function App() {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        width: '120%',
-                        height: '120%',
+                        width: '100%',
+                        height: '100%',
                         transform: 'translate(-50%, -50%)',
                         animation: 'rotateContainer 20s linear infinite',
                         '@keyframes rotateContainer': {
@@ -840,8 +1043,8 @@ function App() {
                               position: 'absolute',
                               top: `${y}%`,
                               left: `${x}%`,
-                              width: '60px',
-                              height: '60px',
+                              width: { md: '48px', lg: '54px', xl: '60px' },
+                              height: { md: '48px', lg: '54px', xl: '60px' },
                               transform: 'translate(-50%, -50%)',
                             }}
                           >
@@ -863,11 +1066,11 @@ function App() {
                                 },
                               }}
                             >
-                              {index === 0 && <img src={AnalysisIcon} alt="Analysis" style={{ width: '36px', height: '36px' }} />}
-                              {index === 1 && <img src={ChatIcon} alt="Chat" style={{ width: '36px', height: '36px' }} />}
-                              {index === 2 && <img src={TestIcon} alt="Test" style={{ width: '36px', height: '36px' }} />}
-                              {index === 3 && <img src={MatchIcon} alt="Match" style={{ width: '36px', height: '36px' }} />}
-                              {index === 4 && <img src={JobSearchIcon} alt="Job Search" style={{ width: '36px', height: '36px' }} />}
+                              {index === 0 && <img src={AnalysisIcon} alt="Analysis" style={{ width: '60%', height: '60%' }} />}
+                              {index === 1 && <img src={ChatIcon} alt="Chat" style={{ width: '60%', height: '60%' }} />}
+                              {index === 2 && <img src={TestIcon} alt="Test" style={{ width: '60%', height: '60%' }} />}
+                              {index === 3 && <img src={MatchIcon} alt="Match" style={{ width: '60%', height: '60%' }} />}
+                              {index === 4 && <img src={JobSearchIcon} alt="Job Search" style={{ width: '60%', height: '60%' }} />}
                             </Box>
                           </Box>
                         );
@@ -1212,6 +1415,11 @@ function App() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                        },
                       }}
                     >
                       <img
@@ -1243,6 +1451,11 @@ function App() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                        },
                       }}
                     >
                       <img
@@ -1525,6 +1738,11 @@ function App() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                        },
                       }}
                     >
                       <img
@@ -1557,6 +1775,11 @@ function App() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                        },
                       }}
                     >
                       <img
@@ -2146,12 +2369,12 @@ function App() {
                       },
                     }}
                   >
-                      <PersonIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                      <PersonIcon className="icon-circle" sx={{ fontSize: { xs: 18, sm: 20 }, color: '#212121' }} />
                       <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                         <span>For Candidates</span>
                       </Box>
                       <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
-                        <PersonIcon sx={{ fontSize: 20 }} />
+                        <PersonIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
                         <span>Discover Your Fit</span>
                       </Box>
                     </Button>
@@ -2211,12 +2434,12 @@ function App() {
                       },
                     }}
                   >
-                      <BusinessIcon className="icon-circle" sx={{ fontSize: 20, color: '#212121' }} />
+                      <BusinessIcon className="icon-circle" sx={{ fontSize: { xs: 18, sm: 20 }, color: '#212121' }} />
                       <Box className="default-text" sx={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                         <span>For Companies</span>
                       </Box>
                       <Box className="hover-text" sx={{ position: 'relative', zIndex: 2, display: 'none', alignItems: 'center', gap: 1, justifyContent: 'center', width: '100%' }}>
-                        <BusinessIcon sx={{ fontSize: 20 }} />
+                        <BusinessIcon sx={{ fontSize: { xs: 18, sm: 20 } }} />
                         <span>Start Hiring Smarter</span>
                       </Box>
                     </Button>
@@ -2255,9 +2478,6 @@ function App() {
                 </Link>
                 <Link href="#features" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
                   Solution
-                </Link>
-                <Link href="#contact" underline="none" sx={{ color: 'rgba(255, 255, 255, 0.8)', '&:hover': { color: 'secondary.main' } }}>
-                  Contact
                 </Link>
               </Box>
             </Box>
